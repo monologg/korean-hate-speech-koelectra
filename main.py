@@ -65,7 +65,7 @@ if __name__ == '__main__':
     parser.add_argument("--do_pred", action="store_true", help="Whether to run prediction on the test set.")
     parser.add_argument("--no_cuda", action="store_true", help="Avoid using CUDA when available")
 
-    parser.add_argument('--bias_loss_coef', type=float, default=1.0, help='Coefficient for the bias loss.')
+    parser.add_argument('--bias_loss_coef', type=float, default=0.5, help='Coefficient for the bias loss.')
     parser.add_argument('--hate_loss_coef', type=float, default=1.0, help='Coefficient for the hate loss.')
 
     args = parser.parse_args()

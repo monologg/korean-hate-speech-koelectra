@@ -22,9 +22,28 @@
 
 ### Model
 
-`[CLS]` token에서 `bias`와 `hate`를 예측하는 **Joint Architecture**를 사용
+`[CLS]` token에서 `bias`와 `hate`를 동시에 예측하는 **Joint Architecture**
 
+- loss = bias_coef \* bias_loss + hate_coef \* hate_loss (`bias_loss_coef`, `hate_loss_coef` 변경 가능)
 - [model.py](./model.py)의 `ElectraForBiasClassification` 참고
+
+### Input
+
+- `[CLS] comment [SEP] title [SEP]`으로 comment와 title을 이어 붙여 Input으로 넣음
+- 전처리의 경우 `[]` 등의 brace로 묶인 단어 제거, 따옴표 통일, 불필요한 따옴표 제거, normalization 등 **간단한 것만 적용**
+  - [data_loader.py](./data_loader.py)의 `preprocess` 함수 참고
+
+### Hyperparameters
+
+| Parameters            |      |
+| --------------------- | ---: |
+| Batch Size            |   16 |
+| Learning Rate         | 5e-5 |
+| Epochs                |   10 |
+| Warmup Proportion     |  0.1 |
+| Max Seq Length        |  100 |
+| Bias Loss Coefficient |  0.5 |
+| Hate Loss Coefficient |  1.0 |
 
 ### Metric
 
@@ -32,12 +51,6 @@
 
 - mean_weighted_f1 = (bias_weighted_f1 + hate_weighted_f1) / 2
 - `Dev dataset` 기준으로 `mean_weighted_f1`의 값이 **가장 높은 모델**을 최종적으로 저장
-
-### Input
-
-- `[CLS] comment [SEP] title [SEP]`으로 comment와 title을 이어 붙여서 Input으로 넣음
-- 전처리의 경우 `[]` 등의 brace로 묶인 단어 제거, 따옴표 통일, 불필요한 따옴표 제거, normalization 등 가벼운 것만 적용
-  - [data_loader.py](./data_loader.py)의 `preprocess` 함수 참고
 
 ## Train
 
@@ -51,7 +64,7 @@ $ python3 main.py --model_type koelectra-base-v2 \
 
 ## Prediction
 
-test file에 대한 예측값을 csv 형태로 저장
+Test file에 대한 예측값을 **csv 형태**로 저장
 
 ```bash
 $ python3 main.py --model_type koelectra-base-v2 \
@@ -76,13 +89,11 @@ others,none
 
 | (Weighted F1) | Bias F1 | Hate F1 | Mean F1 |
 | ------------- | ------: | ------: | ------: |
-| Dev Dataset   |   81.83 |   65.31 |   73.47 |
+| Dev Dataset   |   82.28 |   67.25 |   74.77 |
 
 ## Reference
 
 - [Korean Hate Speech](https://github.com/kocohub/korean-hate-speech)
-- [Huggingface Transformers](https://github.com/huggingface/transformers)
-- [KoBERT Transformers](https://github.com/monologg/KoBERT-Transformers)
-- [HanBERT Transformers](https://github.com/monologg/HanBert-Transformers)
 - [KoELECTRA](https://github.com/monologg/KoELECTRA)
+- [Huggingface Transformers](https://github.com/huggingface/transformers)
 - [AI Challenge 2020 NLP Comments Task](https://github.com/AI-Challenge2020/AI-Challenge2020/blob/master/18_NLP_comments/README.md)
