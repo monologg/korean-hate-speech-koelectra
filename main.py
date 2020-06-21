@@ -39,7 +39,7 @@ if __name__ == '__main__':
     parser.add_argument("--train_file", default="train.txt", type=str, help="Train file")
     parser.add_argument("--dev_file", default="validate.txt", type=str, help="Dev file")
     parser.add_argument("--test_file", default="test.txt", type=str, help="Test file")
-    parser.add_argument("--pred_output_file", default="pred_out.txt", type=str, help="Output file for prediction")
+    parser.add_argument("--prediction_file", default="prediction.csv", type=str, help="Output file for prediction")
 
     parser.add_argument("--model_type", default="koelectra-base-v2", type=str,
                         help="Model type selected in the list: " + ", ".join(MODEL_CLASSES.keys()))

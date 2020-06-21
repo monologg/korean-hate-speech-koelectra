@@ -237,12 +237,13 @@ class Trainer(object):
         hate_preds = np.argmax(hate_preds, axis=1).tolist()
 
         # Write the result
-        logger.info("Writing Prediction to {}...".format(self.args.pred_output_file))
+        logger.info("Writing Prediction to {}...".format(self.args.prediction_file))
         if not os.path.exists(self.args.pred_dir):
             os.makedirs(self.args.pred_dir)
-        with open(os.path.join(self.args.pred_dir, self.args.pred_output_file), "w", encoding="utf-8") as f:
+        with open(os.path.join(self.args.pred_dir, self.args.prediction_file), "w", encoding="utf-8") as f:
+            f.write("bias,hate\n")
             for bias_idx, hate_idx in zip(bias_preds, hate_preds):
-                f.write("{}\t{}\n".format(self.bias_label_lst[bias_idx], self.hate_label_lst[hate_idx]))
+                f.write("{},{}\n".format(self.bias_label_lst[bias_idx], self.hate_label_lst[hate_idx]))
 
     def save_model(self):
         # Save model checkpoint (Overwrite)
