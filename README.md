@@ -10,7 +10,7 @@
 | validate |       471 |
 | test     |       974 |
 
-- Bias (gender, other, none), Hate (hate, offensive, none)
+- **Bias** (gender, other, none), **Hate** (hate, offensive, none)
 
 ## Requirements
 
