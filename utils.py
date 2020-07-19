@@ -24,7 +24,6 @@ MODEL_CLASSES = {
     "koelectra-small": (ElectraConfig, ElectraForBiasClassification, ElectraTokenizer),
     "koelectra-base-v2": (ElectraConfig, ElectraForBiasClassification, ElectraTokenizer),
     "koelectra-small-v2": (ElectraConfig, ElectraForBiasClassification, ElectraTokenizer),
-    "kcbert-small-645k": (BertConfig, BertForBiasClassification, BertTokenizer),
     "kcbert-base": (BertConfig, BertForBiasClassification, BertTokenizer),
 }
 
