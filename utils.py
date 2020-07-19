@@ -8,10 +8,13 @@ from sklearn.metrics import f1_score
 from transformers import (
     ElectraConfig,
     ElectraTokenizer,
+    BertConfig,
+    BertTokenizer
 )
 
 from model import (
-    ElectraForBiasClassification
+    ElectraForBiasClassification,
+    BertForBiasClassification
 )
 
 logger = logging.getLogger(__name__)
@@ -20,7 +23,9 @@ MODEL_CLASSES = {
     "koelectra-base": (ElectraConfig, ElectraForBiasClassification, ElectraTokenizer),
     "koelectra-small": (ElectraConfig, ElectraForBiasClassification, ElectraTokenizer),
     "koelectra-base-v2": (ElectraConfig, ElectraForBiasClassification, ElectraTokenizer),
-    "koelectra-small-v2": (ElectraConfig, ElectraForBiasClassification, ElectraTokenizer)
+    "koelectra-small-v2": (ElectraConfig, ElectraForBiasClassification, ElectraTokenizer),
+    "kcbert-small-645k": (BertConfig, BertForBiasClassification, BertTokenizer),
+    "kcbert-base": (BertConfig, BertForBiasClassification, BertTokenizer),
 }
 
 

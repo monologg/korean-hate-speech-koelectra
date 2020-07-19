@@ -139,3 +139,6 @@ model/
 
 preds/
 test.hate.no_label.csv
+
+kcbert-*/
+*script.sh
